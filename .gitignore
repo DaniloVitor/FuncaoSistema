@@ -62,7 +62,6 @@ publish/
 *.bak
 
 # SQL Server database files
-*.mdf
 *.ldf
 *.ndf
 
