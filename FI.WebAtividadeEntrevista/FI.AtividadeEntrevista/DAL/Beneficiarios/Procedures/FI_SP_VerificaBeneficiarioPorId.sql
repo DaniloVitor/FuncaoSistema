@@ -1,0 +1,10 @@
+﻿ALTER PROC FI_SP_VerificaBeneficiarioPorId
+	@ID BIGINT
+AS
+BEGIN
+	SELECT 1 FROM BENEFICIARIOS 
+		WHERE 
+			(
+				@ID = ID
+			)
+END

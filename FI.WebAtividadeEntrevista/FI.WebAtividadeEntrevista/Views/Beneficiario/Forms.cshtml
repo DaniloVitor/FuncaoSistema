@@ -1,0 +1,26 @@
+﻿<form id="formBeneficiario" method="post" action="/Beneficiario/Incluir">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="CPF">CPF:</label>
+                <input required="required" type="text" class="form-control" id="CPFBeneficiario" name="CPF" data-mask="000.000.000-00" placeholder="Ex.: 010.011.111-00" maxlength="14">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Nome">Nome:</label>
+                <input required="required" type="text" class="form-control" id="NomeBeneficiario" name="Nome" placeholder="Ex.: João" maxlength="50">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="hidden" id="IdBeneficiario" name="Id" />
+                <label style="visibility:hidden; width: 100px;">.</label>
+                <button type="submit" class="btn btn-success mt-3">Incluir</button>
+            </div>
+        </div>
+    </div>
+    <div id="containerTabela">
+        @Html.Action("Lista", "Beneficiario")
+    </div>
+</form>

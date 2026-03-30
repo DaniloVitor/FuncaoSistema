@@ -1,0 +1,22 @@
+﻿<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th style="width:150px;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td class="cpf-text">@string.Format(@"{0:000\.000\.000\-00}", long.Parse(b.CPF.Replace(".", string.Empty).Replace("-", string.Empty)))</td>
+                <td>@b.Nome</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm btn-editar" data-id="@b.Id">Alterar</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-excluir" data-id="@b.Id">Excluir</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
