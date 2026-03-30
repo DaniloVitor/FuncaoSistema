@@ -61,10 +61,6 @@ publish/
 *.log
 *.bak
 
-# SQL Server database files
-*.ldf
-*.ndf
-
 # Node.js dependencies
 node_modules/
 
