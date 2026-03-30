@@ -88,7 +88,11 @@ namespace FI.WebAtividadeEntrevista.Controllers
 
             if (item != null)
             {
-                item.State = EntityStateBeneficiario.Deleted;
+                //item.State = EntityStateBeneficiario.Deleted;
+                lista.Remove(item);
+                if (_bo.VerificarExistenciaPorId(item.Id))
+                    _bo.Excluir(item.Id);
+
             }
 
             Session["Beneficiarios"] = lista;
