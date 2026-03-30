@@ -1,12 +1,14 @@
 ﻿ALTER PROC FI_SP_VerificaBeneficiario
 	@CPF VARCHAR(14),
-	@ID BIGINT = null
+	@ID BIGINT = null,
+	@IDCLIENTE BIGINT = null
 AS
 BEGIN
 	SELECT 1 FROM BENEFICIARIOS 
 		WHERE 
 			(
 				(CPF = @CPF )
-				AND (@ID IS NULL OR Id <> @ID)
+				AND (@ID IS NULL OR (Id <> @ID))
+				AND (@IDCLIENTE IS NULL OR (IDCLIENTE = @IDCLIENTE))
 			)
 END

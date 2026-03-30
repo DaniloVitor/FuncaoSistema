@@ -74,10 +74,10 @@ namespace FI.AtividadeEntrevista.BLL
         /// <param name="CPF"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool VerificarExistencia(string CPF, long id = 0)
+        public bool VerificarExistencia(string CPF, long id = 0, long idCliente = 0)
         {
             DAL.DaoBeneficiario beneficiario = new DAL.DaoBeneficiario();
-            return beneficiario.VerificarExistencia(CPF, id);
+            return beneficiario.VerificarExistencia(CPF, id, idCliente);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace FI.AtividadeEntrevista.BLL
         /// <param name="CPF"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string ValidarCPF(string CPF, long id = 0)
+        public string ValidarCPF(string CPF, long id = 0, long idCliente = 0)
         {
             string mensagem = string.Empty;
             CPF = CPF.Replace(".", "").Replace("-", "");
@@ -105,7 +105,7 @@ namespace FI.AtividadeEntrevista.BLL
             if (string.IsNullOrEmpty(CPF))
                 return mensagem = "CPF é obrigatório";
 
-            if (VerificarExistencia(CPF, id))
+            if (VerificarExistencia(CPF, id, idCliente))
                 mensagem = "CPF ja cadastrado";
 
             if (string.IsNullOrEmpty(mensagem))

@@ -52,6 +52,7 @@ namespace WebAtividadeEntrevista.Controllers
                 };
 
                 Session["IdCliente"] = model.Id;
+                Session.Remove("Beneficiarios");
             }
 
             return View(model);
@@ -139,7 +140,6 @@ namespace WebAtividadeEntrevista.Controllers
                 });
 
                 Beneficiarios(model.Id);
-
                 return Json("Cadastro alterado com sucesso");
             }
         }
@@ -206,10 +206,11 @@ namespace WebAtividadeEntrevista.Controllers
                 }
             }
 
-            Session["Beneficiarios"] = null;
-            Session["IdCliente"] = null;
+            Session.Remove("Beneficiarios");
+            Session.Remove("IdCliente");
         }
 
         #endregion
+
     }
 }

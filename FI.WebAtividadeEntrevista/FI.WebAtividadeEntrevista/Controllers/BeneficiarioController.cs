@@ -49,7 +49,7 @@ namespace FI.WebAtividadeEntrevista.Controllers
         public ActionResult Alterar(BeneficiarioModel model)
         {
             List<BeneficiarioModel> lista = ObterBeneficiarios();
-            string mensagem = _bo.ValidarCPF(model.CPF, model.Id);
+            string mensagem = _bo.ValidarCPF(model.CPF, model.Id, IdCliente);
 
             if (!string.IsNullOrEmpty(mensagem))
                 ModelState.AddModelError("CPF", mensagem);
@@ -103,7 +103,7 @@ namespace FI.WebAtividadeEntrevista.Controllers
         public ActionResult Incluir(BeneficiarioModel model)
         {
             List<BeneficiarioModel> lista = ObterBeneficiarios();
-            string mensagem = _bo.ValidarCPF(model.CPF);
+            string mensagem = _bo.ValidarCPF(CPF: model.CPF, idCliente: IdCliente);
 
             if (string.IsNullOrEmpty(mensagem))
             {
@@ -137,13 +137,11 @@ namespace FI.WebAtividadeEntrevista.Controllers
 
         private List<BeneficiarioModel> ObterBeneficiarios()
         {
-            long idCliente = Session["IdCliente"] == null ? 0 : Convert.ToInt64(Session["IdCliente"]);
-
             if (Session["Beneficiarios"] == null)
             {
-                if (idCliente > 0)
+                if (IdCliente > 0)
                 {
-                    var listaBanco = _bo.Listar(idCliente);
+                    var listaBanco = _bo.Listar(IdCliente);
                     var listaModel = listaBanco.Select(b => new BeneficiarioModel
                     {
                         Id = b.Id,
@@ -161,6 +159,19 @@ namespace FI.WebAtividadeEntrevista.Controllers
             }
 
             return (List<BeneficiarioModel>)Session["Beneficiarios"];
+        }
+
+        #endregion
+
+
+        #region Propriedades
+
+        private long IdCliente
+        {
+            get
+            {
+                return Session["IdCliente"] == null ? 0 : Convert.ToInt64(Session["IdCliente"]);
+            }
         }
 
         #endregion
